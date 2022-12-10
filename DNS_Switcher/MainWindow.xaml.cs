@@ -142,7 +142,15 @@ namespace DNS_Switcher
             List<string> result = new List<string>();
             result = net.DisplayDnsAddresses();
             DNS1.Text = result[0];
-            DNS2.Text = result[1];
+            if (result.Count > 1)
+            {
+                DNS2.Text = result[1];
+            }else
+            {
+                DNS2.Text = "";
+            }
+                
+            
             this.Dispatcher.Invoke(() => {
                 Ping_Label.Visibility = Visibility.Collapsed;
                 PingProgress.Visibility = Visibility.Visible;
