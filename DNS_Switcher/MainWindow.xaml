@@ -37,14 +37,14 @@
 
                         </Grid>
   <!--#region Main_Page-->
-                     <Grid x:Name="Main_Page" Margin="0,20,0,0" Visibility="Collapsed" Grid.Row="1">
+                     <Grid x:Name="Main_Page" Margin="0,20,0,0" Visibility="Visible" Grid.Row="1">
                           <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                               <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <!--Page Dashboard Title-->
-                             <Border Grid.Row="0" Height="130" Width="360" HorizontalAlignment="Center" Margin="10 25 10 15"  Background="#202020" CornerRadius="6">
+                             <Border Grid.Row="0" Height="130" Width="390" HorizontalAlignment="Center" Margin="10 15 10 15"  Background="#202020" CornerRadius="6">
                                  <Grid>
                                      <Grid.RowDefinitions>
                                          <RowDefinition Height="*"/>
@@ -52,20 +52,20 @@
                                          <RowDefinition Height="*"/>
                                      </Grid.RowDefinitions>
                                      <Grid Grid.Row="0">
-                                         <TextBlock Foreground="#d0c0ff" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 1 : </TextBlock>
-                                         <TextBlock Foreground="#d0c0ff" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.100</TextBlock>
+                                         <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 1 : </TextBlock>
+                                         <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.100</TextBlock>
                                      </Grid>
                                      <Grid Grid.Row="1">
                                          <Separator Background="#673AB3" Margin="15 0 15 0"></Separator>
                                      </Grid>
                                      <Grid Grid.Row="2">
-                                            <TextBlock Foreground="#d0c0ff" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 2 : </TextBlock>
-                                           <TextBlock Foreground="#d0c0ff" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.101</TextBlock>
+                                            <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 2 : </TextBlock>
+                                           <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.101</TextBlock>
                                      </Grid>  
                                  </Grid>
                              </Border>
                            <Grid Grid.Row="1">
-                               <Border  Height="190" Width="360" HorizontalAlignment="Center"  VerticalAlignment="Top"  Background="#202020" CornerRadius="6">
+                               <Border  Height="190" Width="390" HorizontalAlignment="Center"  VerticalAlignment="Top"  Background="#202020" CornerRadius="6">
                                    <Grid>
                                        <Grid.ColumnDefinitions>
                                            <ColumnDefinition Width="*"/>
@@ -74,18 +74,18 @@
                                        </Grid.ColumnDefinitions>
                                        <Grid Grid.Column="0">
                                          <ListView HorizontalContentAlignment="Center" Margin=" 2 0 0 0">
-                                                    <TextBlock Text="Shecan" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Begzar" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Elctro" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Amazon" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Google" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                                    <TextBlock Text="Shecan" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                                    <TextBlock Text="Begzar" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                                    <TextBlock Text="Elctro" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                                    <TextBlock Text="Amazon" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                                    <TextBlock Text="Google" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
                                          </ListView>
                                        </Grid>
                                        
                                             <Separator Background="#673AB3" Grid.Column="1" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />            
                                         
                                         <Grid Grid.Column="2">
-                                             <TextBlock Text="پینگ" Foreground="#d0c0ff" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15" />
+                                             <TextBlock Text="پینگ" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15" />
                                             <Controls:ProgressRing  x:Name="PingProgress" Foreground="#673AB3" VerticalAlignment="Center" HorizontalAlignment="Center"></Controls:ProgressRing>
                                                
                                        </Grid>
@@ -103,14 +103,14 @@
                                
                             </Grid>
                             <Grid Grid.Row="2">
-                                <Border Height="40" Width="360" Background="#202020" CornerRadius="6" ></Border>
-                                 <Button Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="30 0 0 0" >
+                                <Border Height="40" Width="390" Background="#202020" CornerRadius="6" ></Border>
+                                 <Button Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="پاک کردن کش"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource menuButtonIcon}"/>
                                         </StackPanel>
                                     </Button>
-                                <Button Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 30 0" >
+                                <Button Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="خودکار"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="RouterNetwork" Style="{StaticResource menuButtonIcon}"/>
@@ -124,7 +124,7 @@
   <!--#endregion Main_Page-->
                     
   <!--#region SpeedCheck_Page-->
-                    <Grid x:Name="SpeedCheck_Page" Margin="0,20,0,0" Visibility="Visible" Grid.Row="1">
+                    <Grid x:Name="SpeedCheck_Page" Margin="0,20,0,0" Visibility="Collapsed" Grid.Row="1" Opacity="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="360"/>
                             <RowDefinition Height="*"/>
@@ -138,23 +138,51 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                          <Border Grid.Column="0" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
-                              
+                          <Border Grid.Column="1" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
+                              <Grid>
+                                  <TextBlock Text="دانلود" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
+                                  <TextBlock x:Name="Download_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <TextBlock Text="مگابیت بر ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
+                              </Grid>
                           </Border>
                          <Border Grid.Column="0" Grid.Row="1" Margin="15" Background="#202020" CornerRadius="5">
-                              
+                               <Grid>
+                                  <TextBlock Text="سرور" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
+                                  <TextBlock x:Name="Server_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <TextBlock Text="" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
+                              </Grid>
                           </Border>
-                         <Border Grid.Column="1" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
-                              
+                         <Border Grid.Column="0" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
+                              <Grid>
+                                  <TextBlock Text="آپلود" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
+                                  <TextBlock x:Name="Upload_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <TextBlock Text="مگابیت بر ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
+                              </Grid>
                           </Border>
                          <Border Grid.Column="1" Grid.Row="1" Margin="15" Background="#202020" CornerRadius="5">
-                              
+                               <Grid>
+                                  <TextBlock Text="پینگ" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
+                                  <TextBlock x:Name="Ping_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <TextBlock Text="میلی ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
+                              </Grid>
                           </Border>
                             
                             
                         </Grid>
                         <Grid Grid.Row="1">
-                            
+                            <Border Height="40" Width="390" Background="#202020" CornerRadius="6" ></Border>
+                                 <Button Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="سرور خارجی"  VerticalAlignment="Center"/>
+                                            <Icon:PackIconMaterial Kind="Earth" Style="{StaticResource menuButtonIcon}"/>
+                                        </StackPanel>
+                                    </Button>
+                                <Button Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="سرور داخلی"  VerticalAlignment="Center"/>
+                                            <Icon:PackIconMaterial Kind="Server" Style="{StaticResource menuButtonIcon}"/>
+                                        </StackPanel>
+                                </Button>
                         </Grid>
                         
                         
@@ -183,25 +211,25 @@
                     </Button>
                     <Border HorizontalAlignment="Left" Grid.Row="1" Width="180" Background="#202020" CornerRadius="30 0 20 0">
                         <DockPanel>
-                              <TextBlock Text="گذر از تحریم" Foreground="#d0c0ff" FontSize="22" DockPanel.Dock="Top" TextAlignment="Center" Margin="0 15 0 0" FontFamily="B Elham" />
-                                <TextBlock Text="نسخه 1.3" Foreground="#d0c0ff" FontSize="13" DockPanel.Dock="Top" TextAlignment="Center"  FontFamily="B Elham" />
+                              <TextBlock Text="گذر از تحریم" Foreground="#FFFFFF" FontSize="22" DockPanel.Dock="Top" TextAlignment="Center" Margin="0 15 0 0" FontFamily="B Elham" />
+                                <TextBlock Text="نسخه 1.3" Foreground="#FFFFFF" FontSize="13" DockPanel.Dock="Top" TextAlignment="Center"  FontFamily="B Elham" />
                                 <!-- Side menu seprator-->
                                 <Separator Margin="15" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
                                 <!--Side menu buttons-->
                                 <StackPanel DockPanel.Dock="Top">
-                                    <Button Style="{StaticResource menuButton}" FontWeight="Bold" >
+                                    <Button x:Name="Main_Button" Style="{StaticResource menuButton}" FontWeight="Bold" Click="Main_Button_Click" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="صفحه اصلی"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Home" Style="{StaticResource menuButtonIcon}"/>
                                         </StackPanel>
                                     </Button>
-                                    <Button Style="{StaticResource menuButton}" FontWeight="Bold" >
+                                    <Button x:Name="SpeedCheck_Button" Style="{StaticResource menuButton}" FontWeight="Bold" Click="SpeedCheck_Button_Click"  >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="بررسی ارتباط"   VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Connection" Style="{StaticResource menuButtonIcon}"/>
                                         </StackPanel>
                                     </Button>
-                                     <Button Style="{StaticResource menuButton}" FontWeight="Bold" >
+                                     <Button Style="{StaticResource menuButton}" FontWeight="Bold" IsEnabled="False" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="ابزار ها"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Tools" Style="{StaticResource menuButtonIcon}"/>
