@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:DNS_Switcher"
         Title="MainWindow" Height="500" Width="600" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize">
-    <Border x:Name="MainBackground" Background="#121212" CornerRadius="20"  MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseDown="Border_MouseDown" >
+    <Border x:Name="MainBackground" Background="#121212" CornerRadius="20"  MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseDown="Border_MouseDown" Loaded="MainBackground_Loaded" >
 
         <Grid>
             <Grid HorizontalAlignment="Stretch">
@@ -52,15 +52,15 @@
                                          <RowDefinition Height="*"/>
                                      </Grid.RowDefinitions>
                                      <Grid Grid.Row="0">
-                                         <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 1 : </TextBlock>
-                                         <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.100</TextBlock>
+                                         <TextBlock  Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 1 : </TextBlock>
+                                         <TextBlock x:Name="DNS1" Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0"></TextBlock>
                                      </Grid>
                                      <Grid Grid.Row="1">
                                          <Separator Background="#673AB3" Margin="15 0 15 0"></Separator>
                                      </Grid>
                                      <Grid Grid.Row="2">
                                             <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0">DNS 2 : </TextBlock>
-                                           <TextBlock Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0">78.157.42.101</TextBlock>
+                                           <TextBlock x:Name="DNS2" Foreground="#FFFFFF" FontFamily="Tahoma" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140 0 0 0"></TextBlock>
                                      </Grid>  
                                  </Grid>
                              </Border>
@@ -73,21 +73,22 @@
                                            <ColumnDefinition Width="*"/>
                                        </Grid.ColumnDefinitions>
                                        <Grid Grid.Column="0">
-                                         <ListView HorizontalContentAlignment="Center" Margin=" 2 0 0 0">
-                                                    <TextBlock Text="Shecan" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Begzar" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Elctro" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Amazon" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
-                                                    <TextBlock Text="Google" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" />
+                                         <ListView x:Name="DNS_Lists" HorizontalContentAlignment="Center" Margin=" 2 0 0 0" SelectionChanged="ListView_SelectionChanged">
+                                                    <ListViewItem x:Name="Shecan"><TextBlock Text="Shecan" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" /></ListViewItem>
+                                                    <ListViewItem x:Name="Begzar"><TextBlock Text="Begzar" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" /></ListViewItem>
+                                                    <ListViewItem x:Name="Elctro"><TextBlock Text="Elctro" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" /></ListViewItem>
+                                                    <ListViewItem x:Name="Cloudflare"><TextBlock Text="Cloudflare" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" /></ListViewItem>
+                                                    <ListViewItem x:Name="Google"><TextBlock Text="Google" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" /></ListViewItem>
                                          </ListView>
                                        </Grid>
                                        
                                             <Separator Background="#673AB3" Grid.Column="1" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />            
                                         
                                         <Grid Grid.Column="2">
-                                             <TextBlock Text="پینگ" Foreground="#FFFFFF" FontSize="18" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15" />
+                                             <TextBlock Text="پینگ" Foreground="#FFFFFF" FontSize="28" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 18" />
                                             <Controls:ProgressRing  x:Name="PingProgress" Foreground="#673AB3" VerticalAlignment="Center" HorizontalAlignment="Center"></Controls:ProgressRing>
-                                               
+                                             <TextBlock x:Name="Ping_Label" Visibility="Collapsed" Text="50" Foreground="#FFFFFF" FontSize="32" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                               <TextBlock x:Name="MS_Label" Visibility="Collapsed" Text="میلی ثانیه" Foreground="#FFFFFF" FontSize="16" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"  /> 
                                        </Grid>
                                    </Grid>
                                    
@@ -110,7 +111,7 @@
                                             <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource menuButtonIcon}"/>
                                         </StackPanel>
                                     </Button>
-                                <Button Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" >
+                                <Button x:Name="RemoveDNSButton" Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" Click="RemoveDNSButton_Click" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="خودکار"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="RouterNetwork" Style="{StaticResource menuButtonIcon}"/>
