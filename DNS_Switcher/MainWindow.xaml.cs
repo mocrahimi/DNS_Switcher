@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace DNS_Switcher
 {
@@ -141,7 +143,17 @@ namespace DNS_Switcher
         {
             List<string> result = new List<string>();
             result = net.DisplayDnsAddresses();
-            DNS1.Text = result[0];
+            if (result.Count > 0)
+            {
+                DNS1.Text = result[0];
+            }
+            else
+            {
+                notification_Label.Text= "شبکه اینترنت یافت نشد";
+                notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0xFF, 0, 0));
+                anim.ShowNotifcation(notification_Border, 500, 2500);
+
+            }
             if (result.Count > 1)
             {
                 DNS2.Text = result[1];
@@ -164,6 +176,17 @@ namespace DNS_Switcher
             net.RemoveDNS();
             RefreshUiInfo();
         }
+        
+        private void ClearcacheButton_Click(object sender, RoutedEventArgs e)
+        {
+           bool result = net.flushDNS();
+            if (result)
+            {
+                notification_Label.Text= "حافظه کش پاک شد";
+                anim.ShowNotifcation(notification_Border,500,2500);
+            }
+        }
+        
     }
     
 }

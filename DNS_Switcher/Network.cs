@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Management;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DNS_Switcher
 {
@@ -29,16 +30,19 @@ namespace DNS_Switcher
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface adapter in adapters)
             {
-                if (adapter.Description == CurrentInterface.Description)
+                if(CurrentInterface != null)
                 {
-                    IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
-                    IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
-                    if (dnsServers.Count > 0)
+                    if (adapter.Description == CurrentInterface.Description)
                     {
-                        
-                        foreach (IPAddress dns in dnsServers)
+                        IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
+                        IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
+                        if (dnsServers.Count > 0)
                         {
-                            result.Add(dns.ToString());
+                        
+                            foreach (IPAddress dns in dnsServers)
+                            {
+                                result.Add(dns.ToString());
+                            }
                         }
                     }
                 }
@@ -113,6 +117,30 @@ namespace DNS_Switcher
             }
             return totalTime / 16;
         }
-        
+
+        public bool flushDNS()
+        {
+            // Start the child process.
+            Process proc = new Process();
+            // Redirect the output stream of the child process.
+            proc.StartInfo.FileName = "CMD.exe";
+            proc.StartInfo.Arguments = "/c ipconfig /flushdns";
+            proc.StartInfo.UseShellExecute= false;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.Start();
+            // Read the output stream first and then wait.
+            string output = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit();
+            Debug.WriteLine(output);
+            if (output == "\r\nWindows IP Configuration\r\n\r\nSuccessfully flushed the DNS Resolver Cache.\r\n")
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
     }
 }
