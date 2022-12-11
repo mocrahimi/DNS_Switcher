@@ -88,6 +88,20 @@ namespace DNS_Switcher
         {
             Storyboard sbshow = new Storyboard();
 
+            var animation = new DoubleAnimation()
+            {
+                BeginTime = TimeSpan.FromSeconds(0),
+                Duration = TimeSpan.FromSeconds(0.4),
+
+                From = element.ActualHeight * -1,
+
+                To = 0
+            };
+            Storyboard.SetTarget(animation, element);
+            Storyboard.SetTargetProperty(animation, new PropertyPath("RenderTransform.Y"));
+
+            sbshow.Children.Add(animation);
+
             //visibility change
             ObjectAnimationUsingKeyFrames myObjAnim = new ObjectAnimationUsingKeyFrames();
             myObjAnim.BeginTime = TimeSpan.FromMilliseconds(0);

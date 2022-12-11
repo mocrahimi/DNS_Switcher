@@ -80,6 +80,7 @@ namespace DNS_Switcher
         private void MainBackground_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshUiInfo();
+            
         }
         public void GetPing(string IP)
         {
@@ -151,7 +152,7 @@ namespace DNS_Switcher
             {
                 notification_Label.Text= "شبکه اینترنت یافت نشد";
                 notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0xFF, 0, 0));
-                anim.ShowNotifcation(notification_Border, 500, 2500);
+                anim.ShowNotifcation(notification_Border, 500, 4500);
 
             }
             if (result.Count > 1)
@@ -183,6 +184,7 @@ namespace DNS_Switcher
             if (result)
             {
                 notification_Label.Text= "حافظه کش پاک شد";
+                notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 50));
                 anim.ShowNotifcation(notification_Border,500,2500);
             }
         }
