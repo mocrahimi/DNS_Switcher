@@ -176,7 +176,7 @@ namespace DNS_Switcher
             net.RemoveDNS();
             RefreshUiInfo();
         }
-        
+
         private void ClearcacheButton_Click(object sender, RoutedEventArgs e)
         {
            bool result = net.flushDNS();
