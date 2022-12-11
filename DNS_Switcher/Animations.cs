@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Animation;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace DNS_Switcher
 {
@@ -87,5 +83,63 @@ namespace DNS_Switcher
             //start animation
             sbshow.Begin(element);
         }
+
+        public void ShowNotifcation(FrameworkElement element, double duration,double delay)
+        {
+            Storyboard sbshow = new Storyboard();
+
+            //visibility change
+            ObjectAnimationUsingKeyFrames myObjAnim = new ObjectAnimationUsingKeyFrames();
+            myObjAnim.BeginTime = TimeSpan.FromMilliseconds(0);
+            Storyboard.SetTargetProperty(myObjAnim, new PropertyPath(UIElement.VisibilityProperty));
+            var d1 = new DiscreteObjectKeyFrame
+            {
+                KeyTime = TimeSpan.FromMilliseconds(0),
+                Value = Visibility.Collapsed
+            };
+            myObjAnim.KeyFrames.Add(d1);
+            d1.KeyTime = TimeSpan.FromMilliseconds(0);
+            d1.Value = Visibility.Visible;
+            myObjAnim.KeyFrames.Add(d1);
+
+
+            //opacity changing
+            DoubleAnimationUsingKeyFrames myDubAnim = new DoubleAnimationUsingKeyFrames();
+            myDubAnim.BeginTime = TimeSpan.FromMilliseconds(100);
+            Storyboard.SetTargetProperty(myDubAnim, new PropertyPath(UIElement.OpacityProperty));
+            var d2 = new EasingDoubleKeyFrame
+            {
+                KeyTime = new TimeSpan(0),
+                Value = 0
+            };
+            myDubAnim.KeyFrames.Add(d2);
+            d2.KeyTime = TimeSpan.FromMilliseconds(duration);
+            d2.Value = 1;
+            myDubAnim.KeyFrames.Add(d2);
+
+            //hide
+            DoubleAnimationUsingKeyFrames hidedubanim = new DoubleAnimationUsingKeyFrames();
+            hidedubanim.BeginTime = TimeSpan.FromMilliseconds(delay);
+            Storyboard.SetTargetProperty(hidedubanim, new PropertyPath(UIElement.OpacityProperty));
+            var d3 = new EasingDoubleKeyFrame
+            {
+                KeyTime = new TimeSpan(0),
+                Value = 1
+            };
+            hidedubanim.KeyFrames.Add(d3);
+            d3.KeyTime = TimeSpan.FromMilliseconds(duration);
+            d3.Value = 0;
+            hidedubanim.KeyFrames.Add(d3);
+
+
+            
+            sbshow.Children.Add(myObjAnim);
+            sbshow.Children.Add(myDubAnim);
+            sbshow.Children.Add(hidedubanim);
+            //start animation
+            sbshow.Begin(element);
+        }
+
+
     }
 }
