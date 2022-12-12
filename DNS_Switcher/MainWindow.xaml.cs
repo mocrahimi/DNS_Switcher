@@ -177,9 +177,10 @@ namespace DNS_Switcher
             net.RemoveDNS();
             RefreshUiInfo();
         }
-
+        //run flushdns command to clear dns cache
         private void ClearcacheButton_Click(object sender, RoutedEventArgs e)
         {
+            
            bool result = net.flushDNS();
             if (result)
             {
