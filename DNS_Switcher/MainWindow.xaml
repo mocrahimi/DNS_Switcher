@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:DNS_Switcher"
         Title="MainWindow" Height="500" Width="600" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize">
-    <Border x:Name="MainBackground" Background="#121212" CornerRadius="20"  MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseDown="Border_MouseDown" Loaded="MainBackground_Loaded" >
+    <Border x:Name="MainBackground" Background="#121212" CornerRadius="20"  MouseDown="Border_MouseDown" Loaded="MainBackground_Loaded" >
 
         <Grid>
             
@@ -106,7 +106,7 @@
                             </Grid>
                             <Grid Grid.Row="2">
                                 <Border Height="40" Width="390" Background="#202020" CornerRadius="6" ></Border>
-                                 <Button x:Name="ClearcacheButton" Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" Click="ClearcacheButton_Click"  >
+                                 <Button x:Name="ClearcacheButton" Style="{StaticResource CustomButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" Click="ClearCacheButton_Click"  >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="پاک کردن کش"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource menuButtonIcon}"/>

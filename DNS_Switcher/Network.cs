@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Net;
-using System.Text;
-using System.Management;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Management;
+using System.Net;
+using System.Net.NetworkInformation;
 
 namespace DNS_Switcher
 {
     class Network
-    {   //get active network adaptor
-       
+    {
+        //Get the Network Interface
         public static NetworkInterface GetActiveEthernetOrWifiNetworkInterface()
         {
             var Nic = NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(
@@ -22,7 +19,7 @@ namespace DNS_Switcher
             return Nic;
         }
 
-        //get dns of the active network adaptor
+        //Get the current DNS of the active network adapter
         public List<string> DisplayDnsAddresses()
         {
             List<string> result = new List<string>();
@@ -30,7 +27,7 @@ namespace DNS_Switcher
             NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface adapter in adapters)
             {
-                if(CurrentInterface != null)
+                if (CurrentInterface != null)
                 {
                     if (adapter.Description == CurrentInterface.Description)
                     {
@@ -38,7 +35,7 @@ namespace DNS_Switcher
                         IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
                         if (dnsServers.Count > 0)
                         {
-                        
+
                             foreach (IPAddress dns in dnsServers)
                             {
                                 result.Add(dns.ToString());
@@ -50,10 +47,11 @@ namespace DNS_Switcher
             return result;
         }
 
-        //set user dns 
-        public void SetDNS(string firstdns,string secenddns)
+        //Set the system DNS to the user selected DNS server
+        public void SetDNS(string dns)
         {
-            string[] Dns = { firstdns, secenddns };
+            string[] dnslist = dns.Split(',');
+           // string[] Dns = { dnslist[0], dnslist[1]};
             var CurrentInterface = GetActiveEthernetOrWifiNetworkInterface();
             if (CurrentInterface == null) return;
 
@@ -68,7 +66,7 @@ namespace DNS_Switcher
                         ManagementBaseObject objdns = objMO.GetMethodParameters("SetDNSServerSearchOrder");
                         if (objdns != null)
                         {
-                            objdns["DNSServerSearchOrder"] = Dns;
+                            objdns["DNSServerSearchOrder"] = dnslist;
                             objMO.InvokeMethod("SetDNSServerSearchOrder", objdns, null);
                         }
                     }
@@ -76,6 +74,10 @@ namespace DNS_Switcher
             }
 
         }
+
+
+
+
         //remove every dns and set it to auto ,a new dns will be asign by the router 
         public void RemoveDNS()
         {
@@ -100,16 +102,19 @@ namespace DNS_Switcher
                 }
             }
         }
+
+
+
+
         //check the ping to given ip address
         public double GetPing(string IP)
         {
             long totalTime = 0;
-            int timeout = 120;
             Ping pingSender = new Ping();
 
             for (int i = 0; i < 16; i++)
             {
-                PingReply reply = pingSender.Send(IP, timeout);
+                PingReply reply = pingSender.Send(IP, 120);
                 if (reply.Status == IPStatus.Success)
                 {
                     totalTime += reply.RoundtripTime;
@@ -118,23 +123,24 @@ namespace DNS_Switcher
             return totalTime / 16;
         }
 
-        public bool flushDNS()
+
+
+
+
+        //flush the DNS Cache
+        public bool FlushDNS()
         {
-            // Start the child process.
             Process proc = new Process();
-            // Redirect the output stream of the child process.
             proc.StartInfo.FileName = "CMD.exe";
             proc.StartInfo.Arguments = "/c ipconfig /flushdns";
-            proc.StartInfo.UseShellExecute= false;
+            proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.Start();
-            // Read the output stream first and then wait.
             string output = proc.StandardOutput.ReadToEnd();
             proc.WaitForExit();
-            Debug.WriteLine(output);
-            if (output == "\r\nWindows IP Configuration\r\n\r\nSuccessfully flushed the DNS Resolver Cache.\r\n")
+            if (output == "\r\nWindows IP Configuration\r\n\r\nSuccessfully flushed the DNS Resolver Cache.\r\n")//check if the cmd outpot is success message
             {
                 return true;
             }

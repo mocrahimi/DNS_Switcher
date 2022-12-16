@@ -40,13 +40,7 @@ namespace DNS_Switcher
                 }
                 else
                     anim.showAnimation(page, 300, 0);
-
-
             }
-        }
-        private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            
         }
 
         private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -111,65 +105,65 @@ namespace DNS_Switcher
         {
           if(DNS_Lists.SelectedItem == Shecan)
           {
-                net.SetDNS("178.22.122.100", "185.51.200.2");
+                net.SetDNS(Settings.Default.Shecan);
                 RefreshUiInfo();
           }
           else if(DNS_Lists.SelectedItem == Begzar){
 
-                net.SetDNS("185.55.226.26", "185.55.225.25");
+                net.SetDNS(Settings.Default.Begzar);
                 RefreshUiInfo();
             } 
           else if (DNS_Lists.SelectedItem == Elctro){
 
-                net.SetDNS("78.157.42.100", "78.157.42.101");
+                net.SetDNS(Settings.Default.Electro);
                 RefreshUiInfo();
             }
           else if (DNS_Lists.SelectedItem == Cloudflare)
             {
 
-                net.SetDNS("1.1.1.1", "1.0.0.1");
+                net.SetDNS(Settings.Default.Cloudflare);
                 RefreshUiInfo();
             } 
           else if (DNS_Lists.SelectedItem == Google){
 
-                net.SetDNS("8.8.8.8", "8.8.4.4");
+                net.SetDNS(Settings.Default.Google);
                 RefreshUiInfo();
             }
 
 
 
         }
-        //updating the UI
+        //updating the UI with new dns and 
         private void RefreshUiInfo()
         {
-            List<string> result = new List<string>();
-            result = net.DisplayDnsAddresses();
-            if (result.Count > 0)
+            List<string> DNSList = new List<string>();
+            DNSList = net.DisplayDnsAddresses();
+            if (DNSList.Count > 0)
             {
-                DNS1.Text = result[0];
+                DNS1.Text = DNSList[0];
             }
             else
             {
                 notification_Label.Text= "شبکه اینترنت یافت نشد";
                 notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0xFF, 0, 0));
                 anim.ShowNotifcation(notification_Border, 500, 4500);
+                return;
 
             }
-            if (result.Count > 1)
+            if (DNSList.Count > 1)
             {
-                DNS2.Text = result[1];
+                DNS2.Text = DNSList[1];
             }else
             {
                 DNS2.Text = "";
             }
-                
-            
+
             this.Dispatcher.Invoke(() => {
                 Ping_Label.Visibility = Visibility.Collapsed;
                 PingProgress.Visibility = Visibility.Visible;
                 MS_Label.Visibility = Visibility.Collapsed;
             });
-            Task.Run(() => GetPing(result[0]));
+            Task.Run(() => GetPing(DNSList[0]));
         }
 
         private void RemoveDNSButton_Click(object sender, RoutedEventArgs e)
@@ -177,17 +171,24 @@ namespace DNS_Switcher
             net.RemoveDNS();
             RefreshUiInfo();
         }
-        //run flushdns command to clear dns cache
-        private void ClearcacheButton_Click(object sender, RoutedEventArgs e)
+        
+        private void ClearCacheButton_Click(object sender, RoutedEventArgs e)
         {
             
-           bool result = net.flushDNS();
+           bool result = net.FlushDNS();
             if (result)
             {
                 notification_Label.Text= "حافظه کش پاک شد";
                 notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 50));
-                anim.ShowNotifcation(notification_Border,500,2500);
+                anim.ShowNotifcation(notification_Border,500,2500);//show a notification
             }
+            else
+            {
+                notification_Label.Text = "عملیات با شکست مواجه شد";
+                notification_Border.Background = new SolidColorBrush(Color.FromArgb(255, 0, 0xFF, 50));
+                anim.ShowNotifcation(notification_Border, 500, 2500);//show a notification
+            }
+          
         }
         
     }
