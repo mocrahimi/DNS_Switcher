@@ -51,7 +51,6 @@ namespace DNS_Switcher
         public void SetDNS(string dns)
         {
             string[] dnslist = dns.Split(',');
-           // string[] Dns = { dnslist[0], dnslist[1]};
             var CurrentInterface = GetActiveEthernetOrWifiNetworkInterface();
             if (CurrentInterface == null) return;
 
@@ -74,9 +73,6 @@ namespace DNS_Switcher
             }
 
         }
-
-
-
 
         //remove every dns and set it to auto ,a new dns will be asign by the router 
         public void RemoveDNS()
