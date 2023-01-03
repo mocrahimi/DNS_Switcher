@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
+
 namespace DNS_Switcher
 {
     /// <summary>
@@ -75,6 +76,23 @@ namespace DNS_Switcher
         {
             RefreshUiInfo();
             
+        }
+        public void GetSpeed()
+        {
+            SpeedCheck.Root result =  net.GetInternetSpeed();
+            
+
+            this.Dispatcher.Invoke(() => {
+
+                SpeedCheckLoading.Visibility = Visibility.Collapsed;
+                Download_Lable.Text = Math.Round(((result.download.bytes / 1024f) / 1024f), 2).ToString();
+                Upload_Lable.Text = Math.Round(((result.upload.bytes / 1024f) / 1024f), 2).ToString();
+                Ping_Lable.Text = Math.Round(result.ping.latency).ToString();
+                Server_Lable.Text = result.server.name;
+                Location_Label.Text = result.server.location+" , "+result.server.country;
+                SpeedChkInBtn.IsEnabled = true;
+                SpeedChkOutBtn.IsEnabled = true;
+            });
         }
         public void GetPing(string IP)
         {
@@ -190,7 +208,21 @@ namespace DNS_Switcher
             }
           
         }
-        
+
+        private async void SpeedCheck_internal_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Dispatcher.Invoke(() => {
+               
+                SpeedCheckLoading.Visibility = Visibility.Visible;
+                SpeedChkInBtn.IsEnabled = false;
+                SpeedChkOutBtn.IsEnabled = false;
+            });
+            Task.Run(() => GetSpeed());
+
+
+        }
+
+
     }
     
 }

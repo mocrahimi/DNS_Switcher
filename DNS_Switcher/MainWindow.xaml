@@ -87,9 +87,9 @@
                                         
                                         <Grid Grid.Column="2">
                                              <TextBlock Text="پینگ" Foreground="#FFFFFF" FontSize="28" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 18" />
-                                            <Controls:ProgressRing  x:Name="PingProgress" Foreground="#673AB3" VerticalAlignment="Center" HorizontalAlignment="Center"></Controls:ProgressRing>
+                                             <Controls:ProgressRing  x:Name="PingProgress" Foreground="#673AB3" VerticalAlignment="Center" HorizontalAlignment="Center"></Controls:ProgressRing>
                                              <TextBlock x:Name="Ping_Label" Visibility="Collapsed" Text="50" Foreground="#FFFFFF" FontSize="32" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center"  />
-                                               <TextBlock x:Name="MS_Label" Visibility="Collapsed" Text="میلی ثانیه" Foreground="#FFFFFF" FontSize="16" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"  /> 
+                                             <TextBlock x:Name="MS_Label" Visibility="Collapsed" Text="میلی ثانیه" Foreground="#FFFFFF" FontSize="16" DockPanel.Dock="Top"  FontFamily="Tahoma" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"  /> 
                                        </Grid>
                                    </Grid>
                                    
@@ -127,6 +127,7 @@
                     
   <!--#region SpeedCheck_Page-->
                     <Grid x:Name="SpeedCheck_Page" Margin="0,20,0,0" Visibility="Collapsed" Grid.Row="1" Opacity="0">
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="360"/>
                             <RowDefinition Height="*"/>
@@ -142,29 +143,40 @@
                         </Grid.RowDefinitions>
                           <Border Grid.Column="1" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
                               <Grid>
-                                  <TextBlock Text="دانلود" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
-                                  <TextBlock x:Name="Download_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <TextBlock Text="دانلود" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/> 
+                                     <Viewbox HorizontalAlignment="Center" Height="45" >   
+                                      <TextBlock  x:Name="Download_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7 0"/>
+                                     </Viewbox>
+
                                   <TextBlock Text="مگابیت بر ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
                               </Grid>
                           </Border>
                          <Border Grid.Column="0" Grid.Row="1" Margin="15" Background="#202020" CornerRadius="5">
                                <Grid>
                                   <TextBlock Text="سرور" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
-                                  <TextBlock x:Name="Server_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                  <TextBlock Text="" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
+                                 <Viewbox HorizontalAlignment="Center" Height="45" >
+                                   <TextBlock x:Name="Server_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7 0" />
+                                  </Viewbox>
+                                    <Viewbox Margin="0 110 0 0" Height="25" >
+                                  <TextBlock  x:Name="Location_Label" Text="" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  </Viewbox>
                               </Grid>
                           </Border>
                          <Border Grid.Column="0" Grid.Row="0" Margin="15" Background="#202020" CornerRadius="5">
                               <Grid>
                                   <TextBlock Text="آپلود" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
-                                  <TextBlock x:Name="Upload_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                  <Viewbox HorizontalAlignment="Center" Height="45" >
+                                        <TextBlock x:Name="Upload_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7 0"/>
+                                  </Viewbox>
                                   <TextBlock Text="مگابیت بر ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
                               </Grid>
                           </Border>
                          <Border Grid.Column="1" Grid.Row="1" Margin="15" Background="#202020" CornerRadius="5">
                                <Grid>
                                   <TextBlock Text="پینگ" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 15 15 0"/>
-                                  <TextBlock x:Name="Ping_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                   <Viewbox HorizontalAlignment="Center" Height="45" >
+                                          <TextBlock x:Name="Ping_Lable" Text="-" FontSize="28" FontFamily="Tahoma" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7 0"/>
+                                   </Viewbox>
                                   <TextBlock Text="میلی ثانیه" FontSize="22" FontFamily="B Elham"  Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 95 0 0"/>
                               </Grid>
                           </Border>
@@ -173,13 +185,15 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <Border Height="40" Width="390" Background="#202020" CornerRadius="6" ></Border>
-                                 <Button Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" >
+                                 <Button x:Name="SpeedChkOutBtn" Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0" >
                                         <StackPanel Orientation="Horizontal">
+                                            
                                             <TextBlock Text="سرور خارجی"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Earth" Style="{StaticResource menuButtonIcon}"/>
+                                             
                                         </StackPanel>
                                     </Button>
-                                <Button Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" >
+                                <Button x:Name="SpeedChkInBtn" Style="{StaticResource menuButton}" FontWeight="Bold" Width="175" Height="40" HorizontalAlignment="Right" Margin="0 0 15 0" Click="SpeedCheck_internal_Button_Click" >
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="سرور داخلی"  VerticalAlignment="Center"/>
                                             <Icon:PackIconMaterial Kind="Server" Style="{StaticResource menuButtonIcon}"/>
@@ -187,15 +201,9 @@
                                 </Button>
                         </Grid>
                         
+                         
+                            <Controls:ProgressRing x:Name="SpeedCheckLoading" Height="90" Width="90" Foreground="#673AB3" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"></Controls:ProgressRing>
                         
-                       
-                       
-                             
-                           
-                            
-                            
-
-
                     </Grid>
   <!--#endregion SpeedCheck_Page-->
                     
@@ -247,7 +255,7 @@
                 </Grid>
   <!--#endregion  Right side menu-->
 
-
+                
             </Grid>
             
             <Grid>
@@ -258,6 +266,7 @@
                       <TextBlock Foreground="#121212" x:Name="notification_Label" Text="عملیات انجام شد" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                 </Border>
             </Grid>
+            
         </Grid>
 
 

@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 
 namespace DNS_Switcher
 {
@@ -142,6 +145,45 @@ namespace DNS_Switcher
             }
             else
                 return false;
+
+        }
+
+
+
+        //testing download and upload speed function 
+        public SpeedCheck.Root GetInternetSpeed(string server = "Auto")
+        {
+
+            SpeedCheck.Root result =null;
+            Process? proc = null;
+            try
+            {
+                proc= new Process();
+                proc.StartInfo.UseShellExecute=false;
+                proc.StartInfo.RedirectStandardOutput= true;
+                proc.StartInfo.CreateNoWindow= true;
+                proc.StartInfo.WindowStyle= ProcessWindowStyle.Hidden;
+                proc.StartInfo.FileName= "speedtest.exe";
+                proc.StartInfo.Arguments = "-P 0 -f json";
+                proc.Start();
+                string output = proc.StandardOutput.ReadToEnd();
+                proc.WaitForExit();
+                var code = proc.ExitCode;
+                result = JsonConvert.DeserializeObject<SpeedCheck.Root>(output);              
+            }
+            catch(Exception)
+            {
+                throw;
+
+            }
+            finally
+            {
+                if(proc != null ) proc.Dispose();
+
+            }
+            return result;
+
+
         }
 
     }
